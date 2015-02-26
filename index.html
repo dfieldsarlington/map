@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset=utf-8 >
-  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=yes' />
-  <title>Mapbox Test</title>
+  <meta charset=utf-8 />
+  <title></title>
   <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.js'></script>
   <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.css' rel='stylesheet' />
   <style>
@@ -12,10 +11,12 @@
   </style>
 </head>
 <body>
-<div id='map-one' class='map'> </div>
+<div id='map-three' class='map'> </div>
 <script>
 L.mapbox.accessToken = 'pk.eyJ1IjoiZGZpZWxkcyIsImEiOiJVeDdXZUs0In0.bpiQfdUSKLnhONEiWaR4cQ';
-L.mapbox.map('map-one', 'dfields.lamj6ab9').setView([42.42.42353,-71.11935], 13);
+L.mapbox.map('map-three', 'examples.map-i86l3621', {
+    scrollWheelZoom: false
+}).setView([38.8929,-77.0252], 14);
 </script>
 </body>
 </html>
