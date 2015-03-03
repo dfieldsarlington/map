@@ -80,8 +80,8 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiZGZpZWxkcyIsImEiOiJVeDdXZUs0In0.bpiQfdUSKLnhO
   // http://leafletjs.com/reference.html#polygon
   var polyline = L.polyline(line_points, polyline_options).addTo(featureGroup);
 
-  var drawControl = new L.Control.Draw({PolylineOptions=false
-    edit: {
+  var drawControl = new L.Control.Draw({
+    edit: {PolylineOptions=false
       featureGroup: featureGroup
     }
   }).addTo(map);
