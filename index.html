@@ -30,7 +30,7 @@ var drawControl = new L.Control.Draw({
     featureGroup: featureGroup
   },
   draw: {
-    polygon: true,
+    polygon: false,
     polyline: false,
     rectangle: false,
     circle: false,
@@ -38,17 +38,16 @@ var drawControl = new L.Control.Draw({
   }
 }).addTo(map);
 
-map.on('draw:created', showPolygonArea);
-map.on('draw:edited', showPolygonAreaEdited);
+
 map.on('draw:created', showmarkerArea);
 map.on('draw:edited', showmarkerAreaAreaEdited);
 
-function showPolygonAreaEdited(e) {
+function showmarkerAreaEdited(e) {
   e.layers.eachLayer(function(layer) {
-    showPolygonArea({ layer: layer });
+    showmarkerArea({ layer: layer });
   });
 }
-function showPolygonArea(e) {
+function showmarkerArea(e) {
   featureGroup.clearLayers();
   featureGroup.addLayer(e.layer);
   e.layer.bindPopup((LGeo.area(e.layer) / 1000000).toFixed(2) + ' km<sup>2</sup>');
