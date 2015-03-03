@@ -34,12 +34,14 @@ var drawControl = new L.Control.Draw({
     polyline: false,
     rectangle: false,
     circle: false,
-    marker: false
+    marker: true
   }
 }).addTo(map);
 
 map.on('draw:created', showPolygonArea);
 map.on('draw:edited', showPolygonAreaEdited);
+map.on('draw:created', showmarkerArea);
+map.on('draw:edited', showmarkerAreaAreaEdited);
 
 function showPolygonAreaEdited(e) {
   e.layers.eachLayer(function(layer) {
