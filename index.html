@@ -28,7 +28,7 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiZGZpZWxkcyIsImEiOiJVeDdXZUs0In0.bpiQfdUSKLnhO
 
   // Define circle options
   // http://leafletjs.com/reference.html#circle
-  //var circle_options = {
+  var circle_options = {
       color: '#fff',      // Stroke color
       opacity: 1,         // Stroke opacity
       weight: 10,         // Stroke weight
@@ -36,11 +36,11 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiZGZpZWxkcyIsImEiOiJVeDdXZUs0In0.bpiQfdUSKLnhO
       fillOpacity: 0.6    // Fill opacity
   };
 
-  //var circle_one = L.circle([38.89415, -77.03738], 20, circle_options).addTo(featureGroup);
-  //var circle_two = L.circle([38.89415, -77.03578], 20, circle_options).addTo(featureGroup);
+  var circle_one = L.circle([38.89415, -77.03738], 20, circle_options).addTo(featureGroup);
+  var circle_two = L.circle([38.89415, -77.03578], 20, circle_options).addTo(featureGroup);
 
   // Create array of lat,lon points
-  //var line_points = [
+  var line_points = [
       [38.893596444352134, -77.0381498336792],
       [38.89337933372204, -77.03792452812195],
       [38.89316222242831, -77.03761339187622],
