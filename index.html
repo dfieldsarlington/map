@@ -2,8 +2,8 @@
 <html>
 <head>
 <meta charset=utf-8 />
-<title>Show drawn polygon area</title>
-<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<title>Leaflet Draw</title>
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=yes' />
 <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.js'></script>
 <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.css' rel='stylesheet' />
 <style>
@@ -12,47 +12,69 @@
 </style>
 </head>
 <body>
+
+
 <link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.2.2/leaflet.draw.css' rel='stylesheet' />
 <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.2.2/leaflet.draw.js'></script>
-<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-geodesy/v0.1.0/leaflet-geodesy.js'></script>
 
 <div id='map'></div>
 
 <script>
 L.mapbox.accessToken = 'pk.eyJ1IjoiZGZpZWxkcyIsImEiOiJVeDdXZUs0In0.bpiQfdUSKLnhONEiWaR4cQ';
-var map = L.mapbox.map('map', 'dfields.lc4m27lk')
-    .setView([42.42353,-71.11935], 14);
+  var map = L.mapbox.map('map', 'dfields.lc4m27lk')
+      .setView([42.42353,-71.11935], 14);
 
-var featureGroup = L.featureGroup().addTo(map);
+  var featureGroup = L.featureGroup().addTo(map);
 
-var drawControl = new L.Control.Draw({
-  edit: {
-    featureGroup: featureGroup
-  },
-  draw: {
-    polygon: false,
-    polyline: false,
-    rectangle: false,
-    circle: false,
-    marker: true
-  }
-}).addTo(map);
+  // Define circle options
+  // http://leafletjs.com/reference.html#circle
+  var circle_options = {
+      color: '#fff',      // Stroke color
+      opacity: 1,         // Stroke opacity
+      weight: 10,         // Stroke weight
+      fillColor: '#000',  // Fill color
+      fillOpacity: 0.6    // Fill opacity
+  };
 
+  var circle_one = L.circle([38.89415, -77.03738], 20, circle_options).addTo(featureGroup);
+  var circle_two = L.circle([38.89415, -77.03578], 20, circle_options).addTo(featureGroup);
 
-map.on('draw:created', showmarkerArea);
-map.on('draw:edited', showmarkerAreaAreaEdited);
+  // Create array of lat,lon points
+  var line_points = [
+      [38.893596444352134, -77.0381498336792],
+      [38.89337933372204, -77.03792452812195],
+      [38.89316222242831, -77.03761339187622],
+      [38.893028615148424, -77.03731298446655],
+      [38.892920059048464, -77.03691601753235],
+      [38.892903358095296, -77.03637957572937],
+      [38.89301191422077, -77.03592896461487],
+      [38.89316222242831, -77.03549981117249],
+      [38.89340438498248, -77.03514575958252],
+      [38.893596444352134, -77.0349633693695]
+  ];
 
-function showmarkerAreaEdited(e) {
-  e.layers.eachLayer(function(layer) {
-    showmarkerArea({ layer: layer });
+  // Define polyline options
+  // http://leafletjs.com/reference.html#polyline
+  var polyline_options = {
+      color: '#000'
+  };
+
+  // Defining a polygon here instead of a polyline will connect the
+  // endpoints and fill the path.
+  // http://leafletjs.com/reference.html#polygon
+  var polyline = L.polyline(line_points, polyline_options).addTo(featureGroup);
+
+  var drawControl = new L.Control.Draw({
+    edit: {
+      featureGroup: featureGroup
+    }
+  }).addTo(map);
+
+  map.on('draw:created', function(e) {
+      featureGroup.addLayer(e.layer);
   });
-}
-function showmarkerArea(e) {
-  featureGroup.clearLayers();
-  featureGroup.addLayer(e.layer);
-  e.layer.bindPopup((LGeo.area(e.layer) / 1000000).toFixed(2) + ' km<sup>2</sup>');
-  e.layer.openPopup();
-}
 </script>
+
+
 </body>
 </html>
