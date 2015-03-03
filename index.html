@@ -39,7 +39,7 @@
 L.mapbox.accessToken = 'pk.eyJ1IjoiZGZpZWxkcyIsImEiOiJVeDdXZUs0In0.bpiQfdUSKLnhONEiWaR4cQ';
   var map = L.mapbox.map('map', 'dfields.lc4m27lk')
       .setView([42.42353,-71.11935], 14);
- L.control.locate().addTo(map);
+ var feature = L.control.locate().addTo(map);
   var featureGroup = L.featureGroup().addTo(map);
 
   // Define circle options
