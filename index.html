@@ -16,35 +16,19 @@
 
 <link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.2.2/leaflet.draw.css' rel='stylesheet' />
 <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.2.2/leaflet.draw.js'></script>
-<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.24.0/L.Control.Locate.js'></script>
-<link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.24.0/L.Control.Locate.css' rel='stylesheet' />
-<!--[if lt IE 9]>
-  <link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.21.0/L.Control.Locate.ie.css' rel='stylesheet' />
-<![endif]-->
-<style>
-.leaflet-control-locate {
-  border:1px solid rgba(0,0,0,0.4);
-  }
-.leaflet-control-locate a {
-  background-color:#fff;
-  background-position:-3px, -2px;
-  }
-.leaflet-control-locate.active a {
-  background-position:-33px -2px;
-  }
-</style>
+
 <div id='map'></div>
 
 <script>
-L.mapbox.accessToken = 'pk.eyJ1IjoiZGZpZWxkcyIsImEiOiJVeDdXZUs0In0.bpiQfdUSKLnhONEiWaR4cQ';
-  var map = L.mapbox.map('map', 'dfields.lc4m27lk')
+L.mapbox.accessToken = '<your access token here>';
+  var map = L.mapbox.map('map', 'examples.map-i86nkdio')
       .setView([42.42353,-71.11935], 14);
- var feature = L.control.locate().addTo(map);
+
   var featureGroup = L.featureGroup().addTo(map);
 
   // Define circle options
   // http://leafletjs.com/reference.html#circle
-  //var circle_options = {
+  var circle_options = {
       color: '#fff',      // Stroke color
       opacity: 1,         // Stroke opacity
       weight: 10,         // Stroke weight
@@ -52,11 +36,11 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiZGZpZWxkcyIsImEiOiJVeDdXZUs0In0.bpiQfdUSKLnhO
       fillOpacity: 0.6    // Fill opacity
   };
 
-  //var circle_one = L.circle([38.89415, -77.03738], 20, circle_options).addTo(featureGroup);
-  //var circle_two = L.circle([38.89415, -77.03578], 20, circle_options).addTo(featureGroup);
+  var circle_one = L.circle([38.89415, -77.03738], 20, circle_options).addTo(featureGroup);
+  var circle_two = L.circle([38.89415, -77.03578], 20, circle_options).addTo(featureGroup);
 
   // Create array of lat,lon points
-  //var line_points = [
+  var line_points = [
       [38.893596444352134, -77.0381498336792],
       [38.89337933372204, -77.03792452812195],
       [38.89316222242831, -77.03761339187622],
